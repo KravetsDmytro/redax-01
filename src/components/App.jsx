@@ -1,16 +1,39 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+// import { nanoid } from 'nanoid'
+import TodoList from "./todoList/TodoList";
+import InputForm from "./InputForm/InputForm";
+import { addTodo } from "store/todoSlice";
+
 export const App = () => {
-  return (
+
+const [text, setText]=useState('');
+ const dispatch=useDispatch();
+
+const addTask= () =>{dispatch(addTodo({text}))
+setText('');
+};
+
+return (
     <div
       style={{
-        height: '100vh',
+        height: '50vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 40,
+        fontSize: 20,
         color: '#010101'
       }}
     >
-      React homework template
-    </div>
+<InputForm  text={text} handleInput={setText} handleSubmit={addTask} />
+
+<TodoList/>
+
+
+
+
+
+   </div>
   );
 };
